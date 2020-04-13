@@ -1,5 +1,29 @@
 <html> 
     <head> 
         <script type = "text/javascript" src = "/webscrape.js"></script>
+        <script>
+            async function myfunction() {
+                const response = await fetch('https://wordpress.org/wp-json');
+                const json = await response.json();
+                let myfill = document.getElementById('fillme');
+                myfill.innerHTML = ''; 
+                let websitename = document.createTextNode(json.name); 
+                let webdescr = document.createTextNode(json.description); 
+                myfill.appendChild(websitename);
+                var br = document.createElement("br");
+                myfill.appendChild(br);
+                myfill.appendChild(webdescr);
+                console.log(JSON.stringify(json));
+            }
+        </script>
     </head> 
+    <body>
+        <a href="/main.html">Return</a>
+        <button onclick='myfunction()'>Button</button>
+        <div>
+            <h3>Website Scraped:</h3>
+            <div id="fillme">Hit the button first!</div>
+        </div>
+        
+    </body>
 </html>
